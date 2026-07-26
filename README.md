@@ -1,3 +1,3 @@
-Personal Portfolio by Owen Zeng
+# Personal Portfolio by Owen Zeng
 
-<a href="https://owenzeng.netlify.app/" Porfolio> Portfolio Here
+[Portfolio Here](https://owenzeng.netlify.app/)
