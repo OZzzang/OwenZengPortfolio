@@ -1,3 +1,3 @@
 # Personal Portfolio by Owen Zeng
 
-[Portfolio Here]()
+[Portfolio Here](https://www.linkedin.com/in/zimozeng/)
