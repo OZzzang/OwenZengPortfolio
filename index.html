@@ -17,7 +17,11 @@
     <!-- Navigation on page-->
     <nav id="nav">
         <a href="#" class="nav-logo"> Owen Zeng </a>
-        <ul class="nav-links">
+        <button id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+            <span></span>
+            <span></span>
+        </button>
+        <ul id="nav-links" class="nav-links">
             <li> <a href="#about"> About </a> </li>
             <li> <a href="#experience"> Experience </a> </li>
             <li> <a href="#projects"> Projects </a> </li>
@@ -41,18 +45,18 @@
         <p class="section-label reveal"> About Me </p>
         <div class="about-grid">
             <div class="about-left reveal reveal-delay-1">
-                <h2 class="about-heading"> Building things <br> with curiosity.</h2>
+                <h2 class="about-heading"> Trace on&mdash; <br> idea to artifact.</h2>
             </div>
             <div class="about-body reveal reveal-delay-2">
                 <p>
                     Hey, I'm Owen, a Math student at the
-                    <strong>University of Waterloo</strong>
-                    who'd rather be building something than sitting through lecture.
+                    <strong>University of Waterloo</strong>.
+                    Most of what I know, I picked up by starting something
+                    I didn't know how to finish yet.
                 </p>
                 <p>
-                    That same curiosity spills outside of code, too. Lately it's meant teaching myself
-                    Japanese, getting lost in stories about ancient historical figures, and watching
-                    League of Legends esports.
+                    Off the keyboard, I'm slowly teaching myself Japanese and reading
+                    far too much about people who were larger than life a few centuries ago.
                 </p>
                 <div class="skills">
                     <div class="skill-group">
@@ -70,9 +74,15 @@
                         <p class="skill-group-label"> Technologies </p>
                         <div class="skills-row">
                             <span class="skill-tag"> Node.js </span>
+                            <span class="skill-tag"> FastAPI </span>
                             <span class="skill-tag"> MongoDB </span>
+                            <span class="skill-tag"> PostgreSQL </span>
                             <span class="skill-tag"> Vite </span>
                             <span class="skill-tag"> Git </span>
+                            <span class="skill-tag"> GitHub </span>
+                            <span class="skill-tag"> Claude Code </span>
+                            <span class="skill-tag"> GCP </span>
+                            <span class="skill-tag"> AWS </span>
                             <span class="skill-tag"> Docker </span>
                             <span class="skill-tag"> Jupyter Notebook </span>
                             <span class="skill-tag"> Power BI </span>
@@ -83,6 +93,7 @@
                         <div class="skills-row">
                             <span class="skill-tag"> React </span>
                             <span class="skill-tag"> Express.js </span>
+                            <span class="skill-tag"> Tailwind CSS </span>
                             <span class="skill-tag"> Pandas </span>
                             <span class="skill-tag"> NumPy </span>
                             <span class="skill-tag"> Matplotlib </span>
@@ -104,8 +115,8 @@
             <div class="experience-item reveal reveal-delay-1">
                 <div class="experience-header">
                     <div>
-                        <h3 class="experience-role"> Data Analyst </h3>
-                        <p class="experience-company"> University of Waterloo Print + Retail Solutions &mdash; Waterloo, Ontario </p>
+                        <h3 class="experience-role"> Software Developer Intern (Data) </h3>
+                        <p class="experience-company"> University of Waterloo Print + Retail Solutions &mdash; Kitchener, Ontario </p>
                     </div>
                     <span class="experience-date"> May 2026 &ndash; Aug 2026 </span>
                 </div>
@@ -119,10 +130,20 @@
             <div class="experience-item reveal reveal-delay-2">
                 <div class="experience-header">
                     <div>
-                        <h3 class="experience-role"> Data Analyst </h3>
+                        <h3 class="experience-role"> Fullstack Developer </h3>
+                        <p class="experience-company"> UW Orbital &mdash; Waterloo, Ontario </p>
+                    </div>
+                    <span class="experience-date"> Sept 2025 &ndash; Present </span>
+                </div>
+            </div>
+
+            <div class="experience-item reveal reveal-delay-3">
+                <div class="experience-header">
+                    <div>
+                        <h3 class="experience-role"> Software Developer </h3>
                         <p class="experience-company"> Best Home Heating &amp; Cooling Ltd &mdash; Scarborough, Ontario </p>
                     </div>
-                    <span class="experience-date"> Dec 2025 &ndash; Jan 2026 </span>
+                    <span class="experience-date"> July 2025 &ndash; Dec 2026 </span>
                 </div>
                 <ul class="experience-points">
                     <li> Built interactive Tableau dashboards with dynamic filters analyzing sales by region and season, improving cash flow by cutting insurance costs 30% and dead inventory 20%. </li>
@@ -131,7 +152,7 @@
                 </ul>
             </div>
 
-            <div class="experience-item reveal reveal-delay-3">
+            <div class="experience-item reveal reveal-delay-4">
                 <div class="experience-header">
                     <div>
                         <h3 class="experience-role"> Mathematics Tutor </h3>
@@ -158,12 +179,19 @@
             <a href="https://nearestgas-web.onrender.com" target="_blank" rel="noopener" class="card reveal reveal-delay-1">
                 <div class="card-num"> 01 </div>
                 <div class="card-title"> NearestGas </div>
-                <p class="card-desc"> Full-stack gas price finder for Quebec drivers, built on a cache-first geospatial architecture with MongoDB $geoNear. Integrates the Gemini API to recommend the best station across fuel loyalty programs. </p>
+                <p class="card-desc"> Full-stack gas price finder for Quebec drivers, cutting external API calls an estimated 70%+ with a cache-first geospatial architecture on MongoDB $geoNear. A Gemini-powered chatbot ranks stations across 7+ fuel loyalty programs, guarded by rate limiting and Zod-validated input. </p>
                 <span class="card-arrow"> &#8594; </span>
             </a>
 
-            <a href="https://github.com/OZzzang/trackdown" target="_blank" rel="noopener" class="card reveal reveal-delay-2">
+            <a href="https://github.com/OZzzang/apiload" target="_blank" rel="noopener" class="card reveal reveal-delay-2">
                 <div class="card-num"> 02 </div>
+                <div class="card-title"> API Load </div>
+                <p class="card-desc"> Python CLI for API load testing, sustaining 10,000+ concurrent requests through a bounded asyncio semaphore across multiple HTTPX clients. Reports p50&ndash;p99 latency, throughput, and error rate, and renders each run as a two-panel Matplotlib chart. </p>
+                <span class="card-arrow"> &#8594; </span>
+            </a>
+
+            <a href="https://github.com/OZzzang/trackdown" target="_blank" rel="noopener" class="card reveal reveal-delay-3">
+                <div class="card-num"> 03 </div>
                 <div class="card-title"> TrackDown </div>
                 <p class="card-desc"> Chrome extension that identifies music playing in any browser tab's audio within 5 seconds, capturing sound directly at the source instead of through a microphone. </p>
                 <span class="card-arrow"> &#8594; </span>
@@ -226,6 +254,33 @@
             }
         });
         
+        // Mobile nav toggle //
+        const navToggle = document.getElementById("nav-toggle");
+
+        // Opens/closes the fullscreen menu and locks page scroll while open //
+        function setMenu(open) {
+            nav.classList.toggle("open", open);
+            document.body.classList.toggle("menu-open", open);
+            navToggle.setAttribute("aria-expanded", open);
+            navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        }
+
+        navToggle.addEventListener("click", function() {
+            setMenu(!nav.classList.contains("open"));
+        });
+
+        // Close the menu when a link is tapped //
+        document.querySelectorAll(".nav-links a").forEach(function(link) {
+            link.addEventListener("click", function() {
+                setMenu(false);
+            });
+        });
+
+        // Close the menu on Escape //
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") setMenu(false);
+        });
+
         // Custom Cursor //
         const cursor = document.getElementById("cursor");
 

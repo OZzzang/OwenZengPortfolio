@@ -51,6 +51,8 @@ nav {
     font-size: 1.2rem;
     color: var(--ink);
     text-decoration: none;
+    position: relative;
+    z-index: 102;
     opacity: 0;
     animation: fadeUp 0.6s 0.8s forwards;
 }
@@ -92,6 +94,48 @@ nav {
 /* Added hover effect to nav links */
 .nav-links a:hover {
     color: var(--ink);
+}
+
+/* Hamburger toggle (only shown on mobile) */
+.nav-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    background: none;
+    position: relative;
+    z-index: 102;
+    opacity: 0;
+    animation: fadeUp 0.6s 1s forwards;
+}
+
+.nav-toggle span {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    height: 1px;
+    background: var(--ink);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), top 0.35s;
+}
+
+.nav-toggle span:nth-child(1) {
+    top: 15px;
+}
+
+.nav-toggle span:nth-child(2) {
+    top: 24px;
+}
+
+/* Morph the two lines into an X when the menu is open */
+nav.open .nav-toggle span:nth-child(1) {
+    top: 19.5px;
+    transform: rotate(45deg);
+}
+
+nav.open .nav-toggle span:nth-child(2) {
+    top: 19.5px;
+    transform: rotate(-45deg);
 }
 
 /* Making nav non-transparent while scrolling */
@@ -151,6 +195,8 @@ nav.scrolled {
 section {
     padding: 120px 48px;
     border-top: 1px solid #e0ddd6;
+    /* Keep anchored sections clear of the fixed nav */
+    scroll-margin-top: 24px;
 }
 
 .section-label {
@@ -255,6 +301,10 @@ section {
     text-transform: uppercase;
     color: var(--accent);
     white-space: nowrap;
+}
+
+.experience-item:not(:has(.experience-points)) .experience-header {
+    margin-bottom: 0;
 }
 
 .experience-points {
@@ -390,28 +440,163 @@ footer p {
 .projects-grid {
     display: grid;
     /* change repeat first input to how many projects on page */
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
 /* Making it responsive(for mobile devices, not desktop) */
+
+/* Tablets: two project cards per row */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     nav, section, footer {
         padding-left: 24px;
         padding-right: 24px;
     }
 
-    .about-grid {
-        grid-template-columns: 1fr;
+    /* Lock page scroll while the mobile menu is open */
+    body.menu-open {
+        overflow: hidden;
     }
 
-    .projects-grid {
+    /* Show hamburger, turn nav links into a fullscreen overlay */
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 28px;
+        background: var(--bg);
+        z-index: 101;
+        animation: none;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    visibility 0s 0.4s;
+    }
+
+    nav.open .nav-links {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    visibility 0s;
+    }
+
+    .nav-links a {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 2.6rem;
+        letter-spacing: 0;
+        text-transform: none;
+        color: var(--ink);
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    #hero {
+        padding-top: 96px;
+    }
+
+    .hero-name {
+        font-size: clamp(3.6rem, 18vw, 5.5rem);
+    }
+
+    .hero-desc {
+        margin-top: 28px;
+    }
+
+    section {
+        padding: 80px 24px;
+    }
+
+    .section-label {
+        margin-bottom: 40px;
+    }
+
+    .about-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-body p {
+        font-size: 1rem;
+    }
+
+    .experience-list {
+        gap: 40px;
+    }
+
+    .experience-item {
+        padding-top: 32px;
     }
 
     .experience-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 8px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card {
+        padding: 32px;
+        border-radius: 32px;
+    }
+
+    .card-num {
+        font-size: 2.4rem;
+        margin-bottom: 16px;
+    }
+
+    .contact-email {
+        font-size: 0.95rem;
+    }
+
+    .contact-links {
+        margin-top: 40px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        padding: 24px;
+    }
+}
+
+/* Touch devices: restore the native cursor and hide the custom one */
+@media (hover: none), (pointer: coarse) {
+    body *, body a, body button {
+        cursor: auto;
+    }
+
+    #cursor {
+        display: none;
+    }
+
+    /* No hover lift on touch, so the tap doesn't leave cards stuck */
+    .card:hover {
+        transform: none;
     }
 }
 
